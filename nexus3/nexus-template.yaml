@@ -49,7 +49,7 @@ objects:
         containers:
         - env:
             - name: INSTALL4J_ADD_VM_PARAMS
-              value: -Djava.util.prefs.userRoot=${NEXUS_DATA}/javapres
+              value: -Djava.util.prefs.userRoot=${NEXUS_DATA}/javaprefs
           imagePullPolicy: Always
           livenessProbe:
             exec:
@@ -103,7 +103,7 @@ objects:
         volumes:
         - name: nexus-data
           persistentVolumeClaim:
-            claimName: nexus-data-pvc1
+            claimName: nexus-pvc
     test: false
     triggers:
     - type: ConfigChange
@@ -164,7 +164,7 @@ objects:
   metadata:
     labels:
       app: ${NEXUS_SERVICE_NAME}
-    name: nexus-data-pvc1
+    name: nexus-pvc
   spec:
     accessModes:
     - ReadWriteOnce
