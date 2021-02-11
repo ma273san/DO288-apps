@@ -103,7 +103,7 @@ objects:
         volumes:
         - name: nexus-data
           persistentVolumeClaim:
-            claimName: nexus-pvc
+            claimName: nexus-data-pvc
     test: false
     triggers:
     - type: ConfigChange
@@ -164,7 +164,7 @@ objects:
   metadata:
     labels:
       app: ${NEXUS_SERVICE_NAME}
-    name: nexus-pvc
+    name: nexus-data-pvc
   spec:
     accessModes:
     - ReadWriteOnce
