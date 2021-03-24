@@ -61,7 +61,7 @@ pipeline {
                 echo '### Creating a new app in DEV env ###'
                 //TODO: Create a new app and expose the service
                 sh '''
-                     oc new-app --name ${APP_NAME} --as-deployment-config --buid-env npm_config_registry=http://${NEXUS_SERVER} nodejs:latest~${APP_GIT_URL}#custom-pipeline --context-dir ${APP_NAME} -n ${DEV_PROJECT}
+                     oc new-app --name ${APP_NAME} --as-deployment-config --build-env npm_config_registry=${NEXUS_SERVER} nodejs:latest~${APP_GIT_URL}#custom-pipeline --context-dir ${APP_NAME} -n ${DEV_PROJECT}
                      oc expose svc/${APP_NAME} -n ${DEV_PROJECT}
                    '''
                 //TODO
