@@ -106,7 +106,6 @@ pipeline {
                     input message: "Promote to Staging?"
                 }
                 //TODO: Tag the books:latest image stream as books:stage
-            steps {
                script{
                     openshift.withCluster() {
                     openshift.withProject( "${DEV_PROJECT}" ) {
@@ -114,7 +113,6 @@ pipeline {
                      }
                     }
                    }
-                  }
                 //TODO
             }
         }
