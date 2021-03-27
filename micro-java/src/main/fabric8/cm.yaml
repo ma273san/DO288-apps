@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tomo
+data:
+  APP_MSG: hello tomo
+  
