@@ -3,5 +3,5 @@ spec:
     spec:
       containers:
         - envFrom:
-          - configMap:
+          - configMapRef:
               name: tomo
