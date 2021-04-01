@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi:8.0
+FROM registry.access.redhat.com/ubi8/ubi
 
 RUN yum --disableplugin=subscription-manager -y module enable php:7.2 && \
     yum --disableplugin=subscription-manager -y install httpd php && \
