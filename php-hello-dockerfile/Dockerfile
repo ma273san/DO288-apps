@@ -4,6 +4,8 @@ RUN yum --disableplugin=subscription-manager -y module enable php:7.2 && \
     yum --disableplugin=subscription-manager -y install httpd && \
     yum --disableplugin=subscription-manger clean all
 
+ADD index.php /var/www/html 
+
 RUN sed -i "s/Listen 80/Listen 8080/g" /etc/httpd/conf/httpd.conf
 
 RUN chgrp -R 0   /var/run/httpd /var/log/httpd && \
