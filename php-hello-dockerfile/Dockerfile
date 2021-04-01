@@ -1,18 +1,19 @@
-FROM registry.access.redhat.com/ubi8/ubi:8.0
+FROM registry.access.redhat.com/ubi8/ubi
 
-RUN yum --disableplugin=subscription-manager -y module enable php:7.2 && \
-    yum --disableplugin=subscription-manager -y install httpd && \
-    yum --disableplugin=subscription-manger clean all
+RUN yum --disableplugin=subscription-manager -y module enable php:7.2 \
+  && yum --disableplugin=subscription-manager -y install httpd php \
+  && yum --disableplugin=subscription-manager clean all
 
-ADD index.php /var/www/html 
+ADD index.php /var/www/html
 
-RUN sed -i "s/Listen 80/Listen 8080/g" /etc/httpd/conf/httpd.conf
-
-RUN chgrp -R 0   /var/run/httpd /var/log/httpd && \
-    chmod -R g=u /var/run/httpd /var/log/httpd
-
-USER 1234
-
+RUN sed -i 's/Listen 80/Listen 8080/' /etc/httpd/conf/httpd.conf \
+  && mkdir /run/php-fpm \
+  && chgrp -R 0 /var/log/httpd /var/run/httpd /run/php-fpm \
+  && chmod -R g=u /var/log/httpd /var/run/httpd /run/php-fpm
+  
 EXPOSE 8080
 
-RUN httpd -D FORGROUND
+USER 1001
+
+CMD php-fpm & httpd -D FOREGROUND
+
