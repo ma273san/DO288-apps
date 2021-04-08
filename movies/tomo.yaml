@@ -10,6 +10,6 @@ spec:
     contextDir: movies
   strategy:
     jenkinsPipelineStrategy:
-      -- type: JenkinsPipeline
+      type: JenkinsPipeline
 
 
